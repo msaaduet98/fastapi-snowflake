@@ -4,6 +4,7 @@ from sqlalchemy import Column, Integer, String, DateTime
 
 from app.db.database import Base
 
+
 class Client(Base):
     __tablename__ = "clients"
 

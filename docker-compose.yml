@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  localstack:
+    container_name: "localstack-main"
+    image: localstack/snowflake
+    ports:
+      - "127.0.0.1:4566:4566"
+      - "127.0.0.1:4510-4559:4510-4559"
+      - "127.0.0.1:443:443"
+    environment:
+      - LOCALSTACK_AUTH_TOKEN=ls-tohoHevO-nOPi-vIZU-wAso-61470073ca2c
+    volumes:
+      - "./volume:/var/lib/localstack"

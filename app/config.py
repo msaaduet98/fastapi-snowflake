@@ -3,15 +3,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DATABASE_URL = os.getenv("DATABASE_URL", "snowflake://<your_connection_string>")
-
+conn_string = ''
 
 class Config:
-    SECRET_KEY = os.getenv('SECRET_KEY')
-
-    # SQLAlchemy
-    SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    DATABASE_URL = os.getenv("DATABASE_URL", conn_string)
 
 
 class LocalConfig(Config):
