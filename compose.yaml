@@ -1,0 +1,32 @@
+services:
+  www:
+    build:
+      dockerfile: ./dockerfile.www
+    volumes:
+      - "./fastapi_snowflake_challenge:/app/fastapi_snowflake_challenge"
+      - "./db:/app/db"
+      - "./docker/www/prestart.sh:/app/prestart.sh"
+    ports:
+      - "80:80"
+    environment:
+      IS_DEV: true
+      RELOAD: true
+      SF_USER: "mrehanlm"
+      SF_PASSWORD: "(W*q*r1995)"
+      SF_ACCOUNT: "sbhwnwx-kc06186"
+      SF_DATABASE: "TEST_TASK"
+      SF_SCHEMA: "PUBLIC"
+    depends_on:
+      - snowflake_db
+
+  snowflake_db:
+    container_name: "localstack-main-1"
+    image: localstack/snowflake
+    ports:
+      - "127.0.0.1:4566:4566"
+      - "127.0.0.1:4510-4559:4510-4559"
+      - "127.0.0.1:443:443"
+    environment:
+      LOCALSTACK_AUTH_TOKEN: "ls-tohoHevO-nOPi-vIZU-wAso-61470073ca2c"
+    volumes:
+      - "./volume:/var/lib/localstack"
